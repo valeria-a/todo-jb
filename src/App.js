@@ -3,6 +3,7 @@ import './App.css';
 import Header from './Header/Header';
 import AddTaskForm from './AddTaskForm/AddTaskForm';
 import TasksList from './TasksList/TasksList';
+import { Stack } from '@mui/material';
 
 function App() {
 
@@ -40,8 +41,10 @@ function App() {
   return (
     <>
       <Header />
-      <AddTaskForm handleAddTask={handleAddTask}/>
-      <TasksList tasks={tasks} handleTaskEdit/>
+      <Stack direction={'column'} maxWidth={'25em'} margin={'auto'}>
+        <AddTaskForm handleAddTask={handleAddTask}/>
+        <TasksList tasks={tasks} handleTaskEdit={handleTaskEdit}/>
+      </Stack>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material"
+import { Button, Stack, TextField } from "@mui/material"
 import { useState } from "react"
 
 const AddTaskForm = ({handleAddTask}) => {
@@ -13,7 +13,7 @@ const AddTaskForm = ({handleAddTask}) => {
     }
 
     return(
-        <>
+        <Stack direction={'row'}>
             <TextField  label="Enter task..." variant="standard" 
                 InputLabelProps={{shrink: true, required: true}}
                 value={task} 
@@ -25,7 +25,7 @@ const AddTaskForm = ({handleAddTask}) => {
                 />
 
             <Button onClick={handleClick}>ADD</Button>
-        </>
+        </Stack>
     )
 
 }
