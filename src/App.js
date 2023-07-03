@@ -34,7 +34,9 @@ function App() {
     dueDate, // dueDate: dueDate
     completed: false
    } 
-   setTasks([...tasks, newTask])
+   const newTasks = [...tasks, newTask]
+   newTasks.sort((task1, task2) => task2.id - task1.id)
+   setTasks(newTasks)
   }
 
   console.log(tasks)

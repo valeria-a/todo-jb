@@ -1,5 +1,7 @@
-import { Checkbox } from "@mui/material"
+import { Checkbox, Stack } from "@mui/material"
 import { useState } from "react"
+import TaskView from "./TaskView/TaskView"
+import TaskEdit from "./TaskEdit/TaskEdit"
 
 const TaskItem = ({task, handleTaskEdit}) => {
 
@@ -13,9 +15,10 @@ const TaskItem = ({task, handleTaskEdit}) => {
     }
 
     return(
-        <>
+        <Stack direction={'row'}>
             <Checkbox checked={task.completed} onChange={handleCheckboxChange} />
-        </>
+            {editMode ? <TaskEdit task={task} /> : <TaskView task={task} setEditMode={setEditMode} />}
+        </Stack>
     )
 
 }
