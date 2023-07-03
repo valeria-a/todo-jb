@@ -3,15 +3,18 @@ import { useState } from "react"
 
 const TaskItem = ({task, handleTaskEdit}) => {
 
+    console.log('task',task)
+
     const [editMode, setEditMode] = useState(false)
 
     const handleCheckboxChange = (event) => {
-        handleTaskEdit(task.id, event.target.value)
+        console.log('value',event.target.value)
+        handleTaskEdit(task.id, event.target.checked)
     }
 
     return(
         <>
-            <Checkbox value={task.completed} onChange={handleCheckboxChange} />
+            <Checkbox checked={task.completed} onChange={handleCheckboxChange} />
         </>
     )
 
