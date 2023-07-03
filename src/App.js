@@ -7,10 +7,21 @@ function App() {
 
   const [tasks, setTasks] = useState([])
 
+  const handleAddTask = (taskName, dueDate) => {
+   const newTask = {
+    id: Date.now(),
+    name: taskName,
+    dueDate // dueDate: dueDate
+   } 
+   setTasks([...tasks, newTask])
+  }
+
+  console.log(tasks)
+
   return (
     <>
       <Header />
-      <AddTaskForm />
+      <AddTaskForm handleAddTask={handleAddTask}/>
     </>
   );
 }
