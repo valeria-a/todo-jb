@@ -1,5 +1,5 @@
 // import { TASK_ACTION_TYPE_ADD } from "./consts"
-import { createContext } from 'react'
+import { createContext, useContext, useReducer } from 'react'
 import * as consts from './consts'
 
 export const tasksReducer = (tasks, action) => { //dispatch(action)
@@ -46,3 +46,21 @@ export const tasksReducer = (tasks, action) => { //dispatch(action)
 
 export const TasksContext = createContext(null)
 export const TaskDispatchContext = createContext(null)
+
+export const TasksProvider = ({children}) => {
+
+    const [tasks, dispatch] = useReducer(tasksReducer, [])
+
+    return(
+        <TasksContext.Provider value={tasks}>
+            <TaskDispatchContext.Provider value={dispatch}>
+                {children}
+            </TaskDispatchContext.Provider>
+        </TasksContext.Provider>
+    )
+
+}
+
+export const useTaskDispatch = () =>{
+    return useContext(TaskDispatchContext)
+}

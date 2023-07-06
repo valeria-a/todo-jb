@@ -3,11 +3,12 @@ import { useContext, useState } from "react"
 import TaskView from "./TaskView/TaskView"
 import TaskEdit from "./TaskEdit/TaskEdit"
 import { TASK_ACTION_TYPE_EDIT } from "../reducer/consts"
-import { TaskDispatchContext } from "../reducer/tasksReducer"
+import { TaskDispatchContext, useTaskDispatch } from "../reducer/tasksReducer"
 
 const TaskItem = ({task}) => {
 
-    const tasksDispatch = useContext(TaskDispatchContext)
+    // const tasksDispatch = useContext(TaskDispatchContext)
+    const tasksDispatch = useTaskDispatch()
 
     const [editMode, setEditMode] = useState(false)
 

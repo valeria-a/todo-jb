@@ -2,12 +2,13 @@ import { Button } from "@mui/material"
 import TaskItem from "../TaskItem/TaskItem"
 import { TASK_ACTION_TYPE_CLEAR_COMPLETED } from "../reducer/consts"
 import { useContext } from "react"
-import { TaskDispatchContext, TasksContext } from "../reducer/tasksReducer"
+import { TaskDispatchContext, TasksContext, useTaskDispatch } from "../reducer/tasksReducer"
 
 const TasksList = () => {
 
     const tasks = useContext(TasksContext)
-    const tasksDispatch = useContext(TaskDispatchContext)
+    // const tasksDispatch = useContext(TaskDispatchContext)
+    const tasksDispatch = useTaskDispatch()
 
     const handleClick = () => {
         tasksDispatch({
