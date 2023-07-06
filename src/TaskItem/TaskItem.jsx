@@ -17,7 +17,20 @@ const TaskItem = ({task, handleTaskEdit}) => {
     return(
         <Stack direction={'row'}>
             <Checkbox checked={task.completed} onChange={handleCheckboxChange} />
-            {editMode ? <TaskEdit task={task} handleTaskEdit={handleTaskEdit} setEditMode={setEditMode}/> : <TaskView task={task} setEditMode={setEditMode} />}
+            {/* {editMode ? 
+            <TaskEdit task={task} handleTaskEdit={handleTaskEdit} setEditMode={setEditMode}/> 
+            : 
+            <TaskView task={task} setEditMode={setEditMode} />} */}
+            {editMode ? 
+
+                <TaskEdit task={task} handleTaskEdit={handleTaskEdit} setEditMode={setEditMode}/> 
+
+            : 
+
+                <TaskView task={task} setEditMode={setEditMode} />
+
+            }
+
         </Stack>
     )
 

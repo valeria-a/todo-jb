@@ -39,6 +39,11 @@ function App() {
    setTasks(newTasks)
   }
 
+  const handleClearCompleted = () => {
+    const notCompleted = tasks.filter((t) => !t.completed)
+    setTasks(notCompleted)
+  }
+
   console.log(tasks)
 
   return (
@@ -46,7 +51,7 @@ function App() {
       <Header />
       <Stack direction={'column'} maxWidth={'25em'} margin={'auto'}>
         <AddTaskForm handleAddTask={handleAddTask}/>
-        <TasksList tasks={tasks} handleTaskEdit={handleTaskEdit}/>
+        <TasksList tasks={tasks} handleTaskEdit={handleTaskEdit} handleClearCompleted={handleClearCompleted}/>
       </Stack>
     </>
   );
