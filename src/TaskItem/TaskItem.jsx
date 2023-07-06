@@ -1,29 +1,32 @@
 import { Checkbox, Stack } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import TaskView from "./TaskView/TaskView"
 import TaskEdit from "./TaskEdit/TaskEdit"
+import { TASK_ACTION_TYPE_EDIT } from "../reducer/consts"
+import { TaskDispatchContext } from "../reducer/tasksReducer"
 
-const TaskItem = ({task, handleTaskEdit}) => {
+const TaskItem = ({task}) => {
 
-    console.log('task',task)
+    const tasksDispatch = useContext(TaskDispatchContext)
 
     const [editMode, setEditMode] = useState(false)
 
     const handleCheckboxChange = (event) => {
-        console.log('value',event.target.value)
-        handleTaskEdit(task.id, event.target.checked)
+        tasksDispatch({
+            type: TASK_ACTION_TYPE_EDIT,
+            context: {
+                id: task.id,
+                completed: event.target.checked
+            }
+        })
     }
 
     return(
         <Stack direction={'row'}>
             <Checkbox checked={task.completed} onChange={handleCheckboxChange} />
-            {/* {editMode ? 
-            <TaskEdit task={task} handleTaskEdit={handleTaskEdit} setEditMode={setEditMode}/> 
-            : 
-            <TaskView task={task} setEditMode={setEditMode} />} */}
             {editMode ? 
 
-                <TaskEdit task={task} handleTaskEdit={handleTaskEdit} setEditMode={setEditMode}/> 
+                <TaskEdit task={task} setEditMode={setEditMode}/> 
 
             : 
 

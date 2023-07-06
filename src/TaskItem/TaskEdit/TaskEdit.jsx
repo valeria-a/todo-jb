@@ -1,18 +1,27 @@
 import { IconButton } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TASK_ACTION_TYPE_EDIT } from "../../reducer/consts";
+import { TaskDispatchContext } from "../../reducer/tasksReducer";
 
 
-const TaskEdit = ({task, handleTaskEdit, setEditMode}) => {
+const TaskEdit = ({task, setEditMode}) => {
 
     const [tempName, setTempName] = useState(task.name)
     const [tempDate, setTempDate] = useState(task.dueDate)
 
-    console.log('Rendering TaskEdit', tempName)
+    const tasksDispatch = useContext(TaskDispatchContext)
+
 
     const handleClick = () => {
-        handleTaskEdit(task.id, null, tempName, null)
+        tasksDispatch({
+            type: TASK_ACTION_TYPE_EDIT,
+            context: {
+                id: task.id,
+                name: tempName
+            }
+        })
         setEditMode(false)
     }
 

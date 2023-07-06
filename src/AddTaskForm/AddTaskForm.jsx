@@ -1,13 +1,23 @@
 import { Button, Stack, TextField } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { TASK_ACTION_TYPE_ADD } from "../reducer/consts"
+import { TaskDispatchContext } from "../reducer/tasksReducer"
 
-const AddTaskForm = ({handleAddTask}) => {
+const AddTaskForm = () => {
 
+    const tasksDispatch = useContext(TaskDispatchContext)
+    
     const [task, setTask] = useState("")
     const [dueDate, setDueDate] = useState("")
 
     const handleClick = () => {
-        handleAddTask(task, dueDate)
+        tasksDispatch({
+            type: TASK_ACTION_TYPE_ADD,
+            context: {
+                name: task,
+                dueDate: dueDate
+            }
+        })
         setTask("")
         setDueDate("")
     }
